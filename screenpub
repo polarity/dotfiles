@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# grabs image from ~/Bilder/
+# renames it with a date
+# uploads it to pub.scriptshit.de
+# copies url to clipboard
+SOURCE=~/Bilder/$(last-file ~/Bilder/)
+FILENAME="scrnsht-$(timestamp).png"
+DEST=~/Bilder/${FILENAME}
+URL="http://pub.scriptshit.de/${FILENAME}"
+
+# rename
+mv "${SOURCE}" "${DEST}"
+
+#upload
+rsync -zp "${DEST}" sshit@corvus.uberspace.de:/var/www/virtual/sshit/pub.scriptshit.de/
+
+# copy url to clipboard
+echo "$URL" | xclip -in -selection clipboard
+echo "click -> $URL"

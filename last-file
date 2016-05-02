@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# show last file of given directory
+echo "$(ls $1 -Art | tail -n1)"

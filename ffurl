@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# get the url of the current ff window tab
+WID=$(xdotool search --name "Mozilla Firefox")
+echo $WID
+xdotool windowfocus $WID
+xdotool key ctrl+l
+xdotool key ctrl+c
